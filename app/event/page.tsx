@@ -1,9 +1,89 @@
-import { getEvents } from "@/types/event";
+"use client";
+
 import { format } from "date-fns";
 import Link from "next/link";
+import { useEventStore } from "@/store/eventStore";
+import React, { useEffect, useMemo, useState } from "react";
+import { ArrowUp, ArrowDown, ArrowUpDown } from "lucide-react";
 
-export default async function EventsPage() {
-    const events = await getEvents();
+type SortKey =
+    | "match"
+    | "date"
+    | "time"
+    | "stadium"
+    | "stage"
+    | "status";
+
+export default function EventsPage() {
+    const { events, loadEvents } = useEventStore();
+
+    const [search, setSearch] = useState("");
+    const [sortKey, setSortKey] = useState<SortKey>("date");
+    const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
+
+    useEffect(() => {
+        if (events.length === 0) {
+            loadEvents();
+        }
+    }, []);
+
+    const handleSort = (key: SortKey) => {
+        if (key === sortKey) {
+            setSortDir(sortDir === "asc" ? "desc" : "asc");
+        } else {
+            setSortKey(key);
+            setSortDir("asc");
+        }
+    };
+
+
+    const filteredAndSortedEvents = useMemo(() => {
+        return events
+            .filter((e) => {
+                const match =
+                    `${e.homeTeam} ${e.awayTeam}`.toLowerCase();
+                return match.includes(search.toLowerCase());
+            })
+            .sort((a, b) => {
+                let aValue: string | number = "";
+                let bValue: string | number = "";
+
+                switch (sortKey) {
+                    case "match":
+                        aValue = `${a.homeTeam} ${a.awayTeam}`;
+                        bValue = `${b.homeTeam} ${b.awayTeam}`;
+                        break;
+                    case "date":
+                        aValue = new Date(a.date).getTime();
+                        bValue = new Date(b.date).getTime();
+                        break;
+                    case "time":
+                        aValue = a.time;
+                        bValue = b.time;
+                        break;
+                    case "stadium":
+                        aValue = a.stadium;
+                        bValue = b.stadium;
+                        break;
+                    case "stage":
+                        aValue = a.stage;
+                        bValue = b.stage;
+                        break;
+                    case "status":
+                        aValue = a.status;
+                        bValue = b.status;
+                        break;
+                }
+
+                if (aValue < bValue) return sortDir === "asc" ? -1 : 1;
+                if (aValue > bValue) return sortDir === "asc" ? 1 : -1;
+                return 0;
+            });
+    }, [events, search, sortKey, sortDir]);
+
+    if (events.length === 0) {
+        return <div className="p-6">Loading...</div>;
+    }
 
     return (
         <main className="p-6 max-w-5xl mx-auto">
@@ -11,43 +91,83 @@ export default async function EventsPage() {
                 All Events
             </h1>
 
+            <input
+                type="text"
+                placeholder="Search match..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="mb-4 px-4 py-2 border rounded-full w-full max-w-sm"
+            />
+
             <div className="overflow-x-auto">
                 <table className="w-full border-collapse border rounded-lg overflow-hidden">
                     <thead className="bg-[var(--color-surface)] text-left">
                     <tr>
-                        <th className="p-3 border">Match</th>
-                        <th className="p-3 border">Date</th>
-                        <th className="p-3 border">Time</th>
-                        <th className="p-3 border">Stadium</th>
-                        <th className="p-3 border">Stage</th>
-                        <th className="p-3 border">Status</th>
+                        <SortHeader label="Match" sortKeyValue="match" {...{ sortKey, sortDir, handleSort }} />
+                        <SortHeader label="Date" sortKeyValue="date" {...{ sortKey, sortDir, handleSort }} />
+                        <SortHeader label="Time" sortKeyValue="time" {...{ sortKey, sortDir, handleSort }} />
+                        <SortHeader label="Stadium" sortKeyValue="stadium" {...{ sortKey, sortDir, handleSort }} />
+                        <SortHeader label="Stage" sortKeyValue="stage" {...{ sortKey, sortDir, handleSort }} />
+                        <SortHeader label="Status" sortKeyValue="status" {...{ sortKey, sortDir, handleSort }} />
                     </tr>
                     </thead>
 
                     <tbody>
-                    {events.map((event) => (
-                        <tr
-                            key={event.id}
-                            className="hover:bg-[var(--color-surface)] transition"
-                        >
-                            <Link href={`/event/${event.id}`}>
-                                <td >{event.homeTeam} vs {event.awayTeam}</td>
-                            </Link>
-
-                            <td >{format(new Date(event.date), "PPP")}</td>
-
-                            <td >{event.time}</td>
-
-                            <td >{event.stadium}</td>
-
-                            <td >{event.stage}</td>
-
-                            <td >{event.status}</td>
+                    {filteredAndSortedEvents.map((event) => (
+                        <tr key={event.id} >
+                            <td className="p-3 border">
+                                <Link href={`/event/${event.id}`}>
+                                    {event.homeTeam} vs {event.awayTeam}
+                                </Link>
+                            </td>
+                            <td className="p-3 border">
+                                {format(new Date(event.date), "PPP")}
+                            </td>
+                            <td className="p-3 border">{event.time}</td>
+                            <td className="p-3 border">{event.stadium}</td>
+                            <td className="p-3 border">{event.stage}</td>
+                            <td className="p-3 border">{event.status}</td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
             </div>
         </main>
+    );
+}
+
+function SortHeader({
+                        label,
+                        sortKeyValue,
+                        sortKey,
+                        sortDir,
+                        handleSort,
+                    }: {
+    label: string;
+    sortKeyValue: SortKey;
+    sortKey: SortKey;
+    sortDir: "asc" | "desc";
+    handleSort: (key: SortKey) => void;
+}) {
+    const isActive = sortKey === sortKeyValue;
+
+    return (
+        <th
+            onClick={() => handleSort(sortKeyValue)}
+            className="p-3 border cursor-pointer select-none"
+        >
+            <div className="flex items-center gap-1">
+                {label}
+                {isActive ? (
+                    sortDir === "asc" ? (
+                        <ArrowUp size={16} />
+                    ) : (
+                        <ArrowDown size={16} />
+                    )
+                ) : (
+                    <ArrowUpDown size={16} className="opacity-40" />
+                )}
+            </div>
+        </th>
     );
 }

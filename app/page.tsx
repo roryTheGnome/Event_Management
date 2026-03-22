@@ -1,13 +1,26 @@
-import Calender from '@/components/calender/Calender';
-import { getEvents } from '@/types/event';
+'use client';
+
+import { useEffect } from 'react';
+import Calendar from '@/components/calender/Calender';
+import Link from "next/link";
+import {useEventStore} from "@/store/eventStore";
 
 export default function Home() {
-    const events = getEvents();
+    const { events, loadEvents } = useEventStore();
+
+    useEffect(() => {
+        loadEvents();
+    }, []);
 
     return (
         <main className="p-4">
-            <h1 className="text-xl font-bold mb-4">Calendar View  ???(find a title here latr)</h1>
-            <Calender events={events} />
+            <h1 className="text-xl font-bold mb-4">Sports Calendar</h1>
+
+            <Calendar events={events} />
+
+            <Link href="/event/new-event" className="inline-block mt-4 px-4 py-2 bg-primary text-red-700 rounded">
+                + Add Event
+            </Link>
         </main>
     );
 }
