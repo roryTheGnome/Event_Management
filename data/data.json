@@ -1,0 +1,359 @@
+{
+  "data": [
+    {
+      "season": 2024,
+      "status": "played",
+      "timeVenueUTC": "00:00:00",
+      "dateVenue": "2024-01-03",
+      "stadium": null,
+      "homeTeam": {
+        "name": "Al Shabab",
+        "officialName": "Al Shabab FC",
+        "slug": "al-shabab-fc",
+        "abbreviation": "SHA",
+        "teamCountryCode": "KSA",
+        "stagePosition": null
+      },
+      "awayTeam": {
+        "name": "Nasaf",
+        "officialName": "FC Nasaf",
+        "slug": "fc-nasaf-qarshi",
+        "abbreviation": "NAS",
+        "teamCountryCode": "UZB",
+        "stagePosition": null
+      },
+      "result": {
+        "homeGoals": 1,
+        "awayGoals": 2,
+        "winner": "Nasaf",
+        "message": null,
+        "goals": [],
+        "yellowCards": [],
+        "secondYellowCards": [],
+        "directRedCards": []
+      },
+      "stage": {
+        "id": "ROUND OF 16",
+        "name": "ROUND OF 16",
+        "ordering": 4
+      },
+      "group": null,
+      "originCompetitionId": "afc-champions-league",
+      "originCompetitionName": "AFC Champions League"
+    },
+    {
+      "season": 2024,
+      "status": "scheduled",
+      "timeVenueUTC": "16:00:00",
+      "dateVenue": "2024-01-03",
+      "stadium": null,
+      "homeTeam": {
+        "name": "Al Hilal",
+        "officialName": "Al Hilal Saudi FC",
+        "slug": "al-hilal-saudi-fc",
+        "abbreviation": "HIL",
+        "teamCountryCode": "KSA",
+        "stagePosition": null
+      },
+      "awayTeam": {
+        "name": "Shabab Al Ahli",
+        "officialName": "SHABAB AL AHLI DUBAI",
+        "slug": "shabab-al-ahli-club",
+        "abbreviation": "SAH",
+        "teamCountryCode": "UAE",
+        "stagePosition": null
+      },
+      "result": {
+        "homeGoals": 0,
+        "awayGoals": 0,
+        "winner": null,
+        "winnerId": null,
+        "message": null,
+        "goals": [],
+        "yellowCards": [],
+        "secondYellowCards": [],
+        "directRedCards": [],
+        "scoreByPeriods": null
+      },
+      "stage": {
+        "id": "ROUND OF 16",
+        "name": "ROUND OF 16",
+        "ordering": 4
+      },
+      "group": null,
+      "originCompetitionId": "afc-champions-league",
+      "originCompetitionName": "AFC Champions League"
+    },
+    {
+      "season": 2024,
+      "status": "scheduled",
+      "timeVenueUTC": "15:25:00",
+      "dateVenue": "2024-01-04",
+      "stadium": null,
+      "homeTeam": {
+        "name": "Al Duhail",
+        "officialName": "AL DUHAIL SC",
+        "slug": "al-duhail-sc",
+        "abbreviation": "DUH",
+        "teamCountryCode": "QAT",
+        "stagePosition": null
+      },
+      "awayTeam": {
+        "name": "Al Rayyan",
+        "officialName": "AL RAYYAN SC",
+        "slug": "al-rayyan-sc",
+        "abbreviation": "RYN",
+        "teamCountryCode": "QAT",
+        "stagePosition": null
+      },
+      "result": {
+        "homeGoals": 0,
+        "awayGoals": 0,
+        "winner": null,
+        "winnerId": null,
+        "message": null,
+        "goals": [],
+        "yellowCards": [],
+        "secondYellowCards": [],
+        "directRedCards": [],
+        "scoreByPeriods": null
+      },
+      "stage": {
+        "id": "ROUND OF 16",
+        "name": "ROUND OF 16",
+        "ordering": 4
+      },
+      "group": null,
+      "originCompetitionId": "afc-champions-league",
+      "originCompetitionName": "AFC Champions League"
+    },
+    {
+      "season": 2024,
+      "status": "scheduled",
+      "timeVenueUTC": "08:00:00",
+      "dateVenue": "2024-01-04",
+      "stadium": null,
+      "homeTeam": {
+        "name": "Al Faisaly",
+        "officialName": "Al Faisaly FC",
+        "slug": "al-faisaly-fc",
+        "abbreviation": "FAI",
+        "teamCountryCode": "KSA",
+        "stagePosition": null
+      },
+      "awayTeam": {
+        "name": "Foolad",
+        "officialName": "FOOLAD KHOUZESTAN FC",
+        "slug": "foolad-khuzestan-fc",
+        "abbreviation": "FLD",
+        "teamCountryCode": "IRN",
+        "stagePosition": null
+      },
+      "result": {
+        "homeGoals": 0,
+        "awayGoals": 0,
+        "winner": null,
+        "winnerId": null,
+        "message": null,
+        "goals": [],
+        "yellowCards": [],
+        "secondYellowCards": [],
+        "directRedCards": [],
+        "scoreByPeriods": null
+      },
+      "stage": {
+        "id": "ROUND OF 16",
+        "name": "ROUND OF 16",
+        "ordering": 4
+      },
+      "group": null,
+      "originCompetitionId": "afc-champions-league",
+      "originCompetitionName": "AFC Champions League"
+    },
+    {
+      "season": 2024,
+      "status": "scheduled",
+      "timeVenueUTC": "00:00:00",
+      "dateVenue": "2024-01-19",
+      "stadium": null,
+      "homeTeam": null,
+      "awayTeam": {
+        "name": "Urawa Reds",
+        "officialName": "Urawa Red Diamonds",
+        "slug": "urawa-red-diamonds",
+        "abbreviation": "RED",
+        "teamCountryCode": "JPN",
+        "stagePosition": null
+      },
+      "result": null,
+      "stage": {
+        "id": "FINAL",
+        "name": "FINAL",
+        "ordering": 7
+      },
+      "group": null,
+      "originCompetitionId": "afc-champions-league",
+      "originCompetitionName": "AFC Champions League"
+    },
+    {
+      "season": 2026,
+      "status": "scheduled",
+      "timeVenueUTC": "18:30:00",
+      "dateVenue": "2026-03-10",
+      "stadium": "National Stadium",
+      "homeTeam": {
+        "name": "Barcelona",
+        "officialName": "FC Barcelona",
+        "slug": "fc-barcelona",
+        "abbreviation": "BAR",
+        "teamCountryCode": "ESP",
+        "stagePosition": null
+      },
+      "awayTeam": {
+        "name": "Real Madrid",
+        "officialName": "Real Madrid CF",
+        "slug": "real-madrid",
+        "abbreviation": "RMA",
+        "teamCountryCode": "ESP",
+        "stagePosition": null
+      },
+      "result": null,
+      "stage": {
+        "id": "LEAGUE",
+        "name": "League Match",
+        "ordering": 1
+      },
+      "group": null,
+      "originCompetitionId": "la-liga",
+      "originCompetitionName": "La Liga"
+    },
+    {
+      "season": 2026,
+      "status": "scheduled",
+      "timeVenueUTC": "20:00:00",
+      "dateVenue": "2026-03-10",
+      "stadium": "Allianz Arena",
+      "homeTeam": {
+        "name": "Bayern",
+        "officialName": "Bayern Munich",
+        "slug": "bayern-munich",
+        "abbreviation": "BAY",
+        "teamCountryCode": "GER",
+        "stagePosition": null
+      },
+      "awayTeam": {
+        "name": "Dortmund",
+        "officialName": "Borussia Dortmund",
+        "slug": "borussia-dortmund",
+        "abbreviation": "BVB",
+        "teamCountryCode": "GER",
+        "stagePosition": null
+      },
+      "result": null,
+      "stage": {
+        "id": "LEAGUE",
+        "name": "Bundesliga",
+        "ordering": 1
+      },
+      "group": null,
+      "originCompetitionId": "bundesliga",
+      "originCompetitionName": "Bundesliga"
+    },
+    {
+      "season": 2026,
+      "status": "scheduled",
+      "timeVenueUTC": "16:00:00",
+      "dateVenue": "2026-03-15",
+      "stadium": "Emirates Stadium",
+      "homeTeam": {
+        "name": "Arsenal",
+        "officialName": "Arsenal FC",
+        "slug": "arsenal",
+        "abbreviation": "ARS",
+        "teamCountryCode": "ENG",
+        "stagePosition": null
+      },
+      "awayTeam": {
+        "name": "Chelsea",
+        "officialName": "Chelsea FC",
+        "slug": "chelsea",
+        "abbreviation": "CHE",
+        "teamCountryCode": "ENG",
+        "stagePosition": null
+      },
+      "result": null,
+      "stage": {
+        "id": "LEAGUE",
+        "name": "Premier League",
+        "ordering": 1
+      },
+      "group": null,
+      "originCompetitionId": "premier-league",
+      "originCompetitionName": "Premier League"
+    },
+    {
+      "season": 2026,
+      "status": "scheduled",
+      "timeVenueUTC": "14:00:00",
+      "dateVenue": "2026-03-22",
+      "stadium": "San Siro",
+      "homeTeam": {
+        "name": "AC Milan",
+        "officialName": "AC Milan",
+        "slug": "ac-milan",
+        "abbreviation": "MIL",
+        "teamCountryCode": "ITA",
+        "stagePosition": null
+      },
+      "awayTeam": {
+        "name": "Inter",
+        "officialName": "Inter Milan",
+        "slug": "inter-milan",
+        "abbreviation": "INT",
+        "teamCountryCode": "ITA",
+        "stagePosition": null
+      },
+      "result": null,
+      "stage": {
+        "id": "LEAGUE",
+        "name": "Serie A",
+        "ordering": 1
+      },
+      "group": null,
+      "originCompetitionId": "serie-a",
+      "originCompetitionName": "Serie A"
+    },
+    {
+      "season": 2026,
+      "status": "scheduled",
+      "timeVenueUTC": "19:00:00",
+      "dateVenue": "2026-03-22",
+      "stadium": "Parc des Princes",
+      "homeTeam": {
+        "name": "PSG",
+        "officialName": "Paris Saint-Germain",
+        "slug": "psg",
+        "abbreviation": "PSG",
+        "teamCountryCode": "FRA",
+        "stagePosition": null
+      },
+      "awayTeam": {
+        "name": "Lyon",
+        "officialName": "Olympique Lyonnais",
+        "slug": "lyon",
+        "abbreviation": "LYO",
+        "teamCountryCode": "FRA",
+        "stagePosition": null
+      },
+      "result": null,
+      "stage": {
+        "id": "LEAGUE",
+        "name": "Ligue 1",
+        "ordering": 1
+      },
+      "group": null,
+      "originCompetitionId": "ligue-1",
+      "originCompetitionName": "Ligue 1"
+    }
+  ]
+}
