@@ -27,7 +27,7 @@ export type Team={
 export type Result={
     homeGoals: number;
     awayGoals: number;
-    winner: Team | null;
+    winner: string | null;
     message: string | null;
     goals: number[] | null,
     yellowCards: number[] | null,
