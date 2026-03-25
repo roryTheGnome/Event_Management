@@ -6,6 +6,10 @@ import { useEventStore } from '@/store/eventStore';
 import React from "react";
 import { Trash2 } from "lucide-react";
 import DetailRow from "@/components/Detail";
+import NotFound from "next/dist/client/components/builtin/not-found";
+import NotFoundPage from "@/app/not-found";
+import LoadingPage from "@/app/loading";
+import toast from "react-hot-toast";
 
 export default function EventPage() {
     const { id } = useParams();
@@ -19,15 +23,36 @@ export default function EventPage() {
     const event = events.find((e) => e.id === Number(id));
 
     if (events.length === 0)
-        return <div className="p-4 text-center">Loading..</div>;
+        return <LoadingPage/>;
     if (!event)
-        return <div className="p-4 text-center text-red-500 font-semibold">Event not found</div>;
+        return <NotFoundPage/>;
 
-    const handleDelete = () => {  //TODO use toaster later
-        if (confirm('Are you sure you want to delete this event?!?')) {
-            deleteEvent(event.id);
-            router.push('/');
-        }
+    const handleDelete = () => {
+        const toastId = toast((t) => (
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span>Are you sure you want to delete this event?!?</span>
+                <div className="flex gap-2 mt-2 sm:mt-0">
+                    <button
+                        onClick={() => {
+                            deleteEvent(event.id);
+                            router.push('/');
+                            toast.dismiss(t.id);
+                            toast.success('Event deleted successfully!!');
+                        }}
+                        className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                        aria-label="Delete"
+                    >Delete</button>
+
+                    <button
+                        onClick={() => toast.dismiss(t.id)}
+                        className="px-3 py-1 bg-gray-700 text-white rounded hover:bg-gray-800 transition"
+                        aria-label="Cancel"
+                    >Cancel</button>
+                </div>
+            </div>
+        ), {
+            duration: Infinity,
+        });
     };
 
     return (

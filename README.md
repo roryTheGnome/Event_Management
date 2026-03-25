@@ -1,36 +1,157 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🗓️ Eventify – Modern Event Management Dashboard
 
-## Getting Started
+A responsive, SaaS-style event management application built with **Next.js (App Router)**, featuring a dynamic calendar, event table, and full CRUD functionality.
 
-First, run the development server:
+Designed with a focus on **clean UI, accessibility, and modern frontend architecture**.
+
+---
+
+## ✨ Features
+
+* 📅 **Interactive Calendar**
+
+    * Monthly view with event indicators
+    * Navigation between months
+    * Highlighted current day
+
+* 📊 **Events Dashboard**
+
+    * Sortable table (by date, match, stadium, etc.)
+    * Search functionality
+    * Responsive layout
+
+* ➕ **Create Events**
+
+    * Form with validation-ready structure
+    * Default fallbacks (e.g., "TBA")
+
+* 🔍 **Event Details Page**
+
+    * Clean, accessible layout
+    * Delete functionality with toast confirmation
+
+* 📱 **Responsive Design**
+
+    * Mobile-friendly navigation (drawer menu)
+    * Collapsible sidebar for desktop
+
+* 🎨 **Modern UI/UX**
+
+    * Dark SaaS-inspired theme
+    * Glassmorphism elements
+    * Smooth animations with Framer Motion
+
+* 🔔 **User Feedback**
+
+    * Toast notifications (react-hot-toast)
+
+---
+
+## 🧱 Tech Stack
+
+### Core
+
+* **Next.js 16 (App Router)**
+* **React 19**
+* **TypeScript**
+
+### State Management
+
+* **Zustand**
+
+### Styling & UI
+
+* **Tailwind CSS**
+* **Lucide React (icons)**
+* **Framer Motion (animations)**
+
+### Forms & Validation
+
+* **React Hook Form**
+* **Zod**
+
+### Utilities
+
+* **date-fns**
+
+### Tooling
+
+* **ESLint**
+* **Prettier**
+* **Commitlint**
+
+---
+
+## 📦 Installation
 
 ```bash
+git clone https://github.com/your-username/eventify.git
+cd eventify
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+App will be available at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧪 Scripts
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run dev      # Start development server
+npm run build    # Build production app
+npm run start    # Run production server
+npm run lint     # Run ESLint
+npm run format   # Format code with Prettier
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ⚙️ Key Design Decisions
 
-## Deploy on Vercel
+* **Client-side state with Zustand**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    * Lightweight and simple for managing events
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* **App Router (Next.js)**
+
+    * Modern routing, layouts, and loading states
+
+* **Component-driven architecture**
+
+    * Reusable UI components (Calendar, Form Fields, etc.)
+
+* **Accessibility-first approach**
+
+    * ARIA labels
+    * Keyboard navigation support
+    * Semantic HTML
+
+---
+
+## 🚀 Future Improvements
+
+* Drag & drop events in calendar
+* Event modal (instead of navigation)
+* Data persistence (LocalStorage or backend)
+* Dashboard analytics (charts, stats)
+* Multi-language support (i18n)
+
+---
+
+## 🧠 Notes
+
+* This project is frontend-focused and does not include a backend.
+* Event data is stored in-memory via Zustand.
+* Designed as a portfolio project to demonstrate modern React + Next.js patterns.
+
+---
+
+
+## 👤 Author
+
+GitHub: https://github.com/roryTheGnome

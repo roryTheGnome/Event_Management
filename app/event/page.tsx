@@ -6,6 +6,7 @@ import { useEventStore } from "@/store/eventStore";
 import React, { useEffect, useMemo, useState } from "react";
 import {SortKey} from "@/types/event";
 import {SortHeader} from "@/components/SortHeader";
+import LoadingPage from "@/app/loading";
 
 
 export default function EventsPage() {
@@ -68,7 +69,7 @@ export default function EventsPage() {
             });
     }, [events, search, sortKey, sortDir]);
 
-    if (events.length === 0) return <div className="p-6">Loading...</div>;
+    if (events.length === 0) return <LoadingPage/>;
 
     return (
         <main className="p-4 md:p-6 max-w-6xl mx-auto">
