@@ -4,46 +4,33 @@ import { format } from "date-fns";
 import Link from "next/link";
 import { useEventStore } from "@/store/eventStore";
 import React, { useEffect, useMemo, useState } from "react";
-import { ArrowUp, ArrowDown, ArrowUpDown } from "lucide-react";
+import {SortKey} from "@/types/event";
+import {SortHeader} from "@/components/SortHeader";
 
-type SortKey =
-    | "match"
-    | "date"
-    | "time"
-    | "stadium"
-    | "stage"
-    | "status";
 
 export default function EventsPage() {
     const { events, loadEvents } = useEventStore();
-
     const [search, setSearch] = useState("");
     const [sortKey, setSortKey] = useState<SortKey>("date");
     const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
 
     useEffect(() => {
-        if (events.length === 0) {
-            loadEvents();
-        }
+        if (events.length === 0) loadEvents();
     }, []);
 
     const handleSort = (key: SortKey) => {
-        if (key === sortKey) {
-            setSortDir(sortDir === "asc" ? "desc" : "asc");
-        } else {
+        if (key === sortKey) setSortDir(sortDir === "asc" ? "desc" : "asc");
+        else {
             setSortKey(key);
             setSortDir("asc");
         }
     };
 
-
     const filteredAndSortedEvents = useMemo(() => {
         return events
-            .filter((e) => {
-                const match =
-                    `${e.homeTeam} ${e.awayTeam}`.toLowerCase();
-                return match.includes(search.toLowerCase());
-            })
+            .filter((e) =>
+                `${e.homeTeam} ${e.awayTeam}`.toLowerCase().includes(search.toLowerCase())
+            )
             .sort((a, b) => {
                 let aValue: string | number = "";
                 let bValue: string | number = "";
@@ -81,52 +68,84 @@ export default function EventsPage() {
             });
     }, [events, search, sortKey, sortDir]);
 
-    if (events.length === 0) {
-        return <div className="p-6">Loading...</div>;
-    }
+    if (events.length === 0) return <div className="p-6">Loading...</div>;
 
     return (
-        <main className="p-6 max-w-5xl mx-auto">
-            <h1 className="text-2xl font-bold mb-6 text-center">
+        <main className="p-4 md:p-6 max-w-6xl mx-auto">
+            <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">
                 All Events
             </h1>
 
-            <input
-                type="text"
-                placeholder="Search match..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="mb-4 px-4 py-2 border rounded-full w-full max-w-sm"
-            />
+            <div className="flex justify-center mb-4">
+                <input
+                    type="text"
+                    placeholder="Search match.."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="w-full max-w-sm px-4 py-2 rounded-full bg-[#070830] border border-[#1E2164] text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 transition"
+                    aria-label="Search events by match"
+                />
+            </div>
 
-            <div className="overflow-x-auto">
-                <table className="w-full border-collapse border rounded-lg overflow-hidden">
-                    <thead className="bg-[var(--color-surface)] text-left">
+            <div className="overflow-x-auto rounded-xl shadow-lg bg-[#070830]/80 backdrop-blur border border-[#1E2164]">
+                <table className="min-w-full border-collapse">
+                    <thead className="bg-[#1E2164] text-left text-white">
                     <tr>
-                        <SortHeader label="Match" sortKeyValue="match" {...{ sortKey, sortDir, handleSort }} />
-                        <SortHeader label="Date" sortKeyValue="date" {...{ sortKey, sortDir, handleSort }} />
-                        <SortHeader label="Time" sortKeyValue="time" {...{ sortKey, sortDir, handleSort }} />
-                        <SortHeader label="Stadium" sortKeyValue="stadium" {...{ sortKey, sortDir, handleSort }} />
-                        <SortHeader label="Stage" sortKeyValue="stage" {...{ sortKey, sortDir, handleSort }} />
-                        <SortHeader label="Status" sortKeyValue="status" {...{ sortKey, sortDir, handleSort }} />
+                        <SortHeader
+                            label="Match"
+                            sortKeyValue="match"
+                            {...{ sortKey, sortDir, handleSort }}
+                        />
+                        <SortHeader
+                            label="Date"
+                            sortKeyValue="date"
+                            {...{ sortKey, sortDir, handleSort }}
+                        />
+                        <SortHeader
+                            label="Time"
+                            sortKeyValue="time"
+                            {...{ sortKey, sortDir, handleSort }}
+                        />
+                        <SortHeader
+                            label="Stadium"
+                            sortKeyValue="stadium"
+                            {...{ sortKey, sortDir, handleSort }}
+                        />
+                        <SortHeader
+                            label="Stage"
+                            sortKeyValue="stage"
+                            {...{ sortKey, sortDir, handleSort }}
+                        />
+                        <SortHeader
+                            label="Status"
+                            sortKeyValue="status"
+                            {...{ sortKey, sortDir, handleSort }}
+                        />
                     </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody className="text-white">
                     {filteredAndSortedEvents.map((event) => (
-                        <tr key={event.id} >
-                            <td className="p-3 border">
-                                <Link href={`/event/${event.id}`}>
+                        <tr
+                            key={event.id}
+                            className="hover:bg-[#1E2164]/60 transition-colors"
+                        >
+                            <td className="p-3 border-b border-[#1E2164]">
+                                <Link
+                                    href={`/event/${event.id}`}
+                                    className="hover:text-red-500 transition-colors"
+                                    aria-label={`${event.homeTeam} vs ${event.awayTeam}`}
+                                >
                                     {event.homeTeam} vs {event.awayTeam}
                                 </Link>
                             </td>
-                            <td className="p-3 border">
+                            <td className="p-3 border-b border-[#1E2164]">
                                 {format(new Date(event.date), "PPP")}
                             </td>
-                            <td className="p-3 border">{event.time}</td>
-                            <td className="p-3 border">{event.stadium}</td>
-                            <td className="p-3 border">{event.stage}</td>
-                            <td className="p-3 border">{event.status}</td>
+                            <td className="p-3 border-b border-[#1E2164]">{event.time}</td>
+                            <td className="p-3 border-b border-[#1E2164]">{event.stadium}</td>
+                            <td className="p-3 border-b border-[#1E2164]">{event.stage}</td>
+                            <td className="p-3 border-b border-[#1E2164]">{event.status}</td>
                         </tr>
                     ))}
                     </tbody>
@@ -136,38 +155,3 @@ export default function EventsPage() {
     );
 }
 
-function SortHeader({
-                        label,
-                        sortKeyValue,
-                        sortKey,
-                        sortDir,
-                        handleSort,
-                    }: {
-    label: string;
-    sortKeyValue: SortKey;
-    sortKey: SortKey;
-    sortDir: "asc" | "desc";
-    handleSort: (key: SortKey) => void;
-}) {
-    const isActive = sortKey === sortKeyValue;
-
-    return (
-        <th
-            onClick={() => handleSort(sortKeyValue)}
-            className="p-3 border cursor-pointer select-none"
-        >
-            <div className="flex items-center gap-1">
-                {label}
-                {isActive ? (
-                    sortDir === "asc" ? (
-                        <ArrowUp size={16} />
-                    ) : (
-                        <ArrowDown size={16} />
-                    )
-                ) : (
-                    <ArrowUpDown size={16} className="opacity-40" />
-                )}
-            </div>
-        </th>
-    );
-}

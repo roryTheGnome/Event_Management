@@ -1,2 +1,54 @@
 @import "tailwindcss";
 
+:root {
+    --red: #FF0000;
+    --blue-dark: #070830;
+    --blue-mid: #00003C;
+    --blue-light: #1E2164;
+    --black: #000010;
+    --black-pure: #000000;
+    --white: #FFFFFF;
+    --white-soft: #FEFEFE;
+}
+
+/* ===== GLOBAL RESET ===== */
+html, body {
+    background: linear-gradient(180deg, var(--blue-dark), var(--black));
+    color: var(--white);
+    font-family: var(--font-geist-sans);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--blue-light);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--red);
+}
+
+/* ===== REUSABLE CLASSES ===== */
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+}
+
+.nav-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300;
+}
+
+.nav-link:hover {
+    background: linear-gradient(90deg, #1E2164, #00003C);
+    transform: translateX(4px);
+}
+
+.nav-active {
+    background: linear-gradient(90deg, #FF0000, #1E2164);
+}
+
+.icon {
+    @apply w-5 h-5;
+}

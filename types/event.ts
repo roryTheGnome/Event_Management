@@ -3,6 +3,9 @@
 import {APIEvent, Result} from "@/types/api";
 import data from "@/data/data.json";
 
+export type SortKey = "match" | "date" | "time" | "stadium" | "stage" | "status";
+
+
 export type Event={
     id: number,
     date: string,

@@ -4,23 +4,26 @@ import { useParams, useRouter } from 'next/navigation';
 import { format } from 'date-fns';
 import { useEventStore } from '@/store/eventStore';
 import React from "react";
+import { Trash2 } from "lucide-react";
+import DetailRow from "@/components/Detail";
 
 export default function EventPage() {
     const { id } = useParams();
     const router = useRouter();
     const { events, loadEvents, deleteEvent } = useEventStore();
 
-    // Load events if empty
     React.useEffect(() => {
         if (events.length === 0) loadEvents();
     }, []);
 
     const event = events.find((e) => e.id === Number(id));
 
-    if (events.length === 0) return <div className="p-4">Loading...</div>;
-    if (!event) return <div className="p-4">Event not found</div>;
+    if (events.length === 0)
+        return <div className="p-4 text-center">Loading..</div>;
+    if (!event)
+        return <div className="p-4 text-center text-red-500 font-semibold">Event not found</div>;
 
-    const handleDelete = () => {
+    const handleDelete = () => {  //TODO use toaster later
         if (confirm('Are you sure you want to delete this event?!?')) {
             deleteEvent(event.id);
             router.push('/');
@@ -28,23 +31,33 @@ export default function EventPage() {
     };
 
     return (
-        <main className="p-4 max-w-2xl mx-auto">
-            <h1 className="text-2xl font-bold mb-4">{event.homeTeam} vs {event.awayTeam}</h1>
+        <main className="p-4 md:p-6 max-w-2xl mx-auto">
+            <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">
+                {event.homeTeam} vs {event.awayTeam}
+            </h1>
 
-            <div className="bg-base-white p-4 rounded-lg shadow-md space-y-3">
-                <div><strong>Date:</strong> {format(new Date(event.date), 'PPP')}</div>
-                <div><strong>Time:</strong> {event.time}</div>
-                <div><strong>Stadium:</strong> {event.stadium}</div>
-                <div><strong>Stage:</strong> {event.stage}</div>
-                <div><strong>Status:</strong> {event.status}</div>
+            <div
+                className="bg-[#070830]/80 backdrop-blur border border-[#1E2164] rounded-2xl p-6 space-y-4 shadow-lg"
+                role="region"
+                aria-label={`Details for ${event.homeTeam} vs ${event.awayTeam}`}
+            >
+                <DetailRow label="Date" value={format(new Date(event.date), 'PPP')} />
+                <DetailRow label="Time" value={event.time} />
+                <DetailRow label="Stadium" value={event.stadium} />
+                <DetailRow label="Stage" value={event.stage} />
+                <DetailRow label="Status" value={event.status} />
             </div>
 
-            <div className="flex gap-2 mt-4">
+            <div className="flex flex-col sm:flex-row justify-end gap-3 mt-6">
                 <button
                     onClick={handleDelete}
-                    className="px-4 py-2 bg-red-700  rounded hover:bg-red-900 transition"
-                >Delete</button>
-
+                    className="flex items-center gap-2 justify-center px-4 py-2 bg-red-700 hover:bg-red-900 text-white rounded-xl transition focus:outline-none focus:ring-2 focus:ring-red-500"
+                    aria-label="Delete this event"
+                >
+                    <Trash2 size={16} />
+                    Delete
+                </button>
+                {/*later add `edit` here if you have time left to improv*/}
             </div>
         </main>
     );

@@ -1,4 +1,4 @@
-import NewEventForm from "@/components/eventForm";
+import NewEventForm from "@/components/form/EventForm";
 
 export default function NewEventPage(){
     return (
