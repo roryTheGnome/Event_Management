@@ -91,8 +91,8 @@ Designed with a focus on **clean UI, accessibility, and modern frontend architec
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/your-username/eventify.git
-cd eventify
+git clone https://github.com/roryTheGnome/Event_Management
+cd Event_Management
 npm install
 npm run dev
 ```
