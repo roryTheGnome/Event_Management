@@ -5,6 +5,12 @@ A responsive, SaaS-style event management application built with **Next.js (App 
 Designed with a focus on **clean UI, accessibility, and modern frontend architecture**.
 
 ---
+## 🌐 Live Demo
+
+🚀 Try the app here:  
+👉 https://eventmatic.netlify.app/
+
+---
 
 ## ✨ Features
 
